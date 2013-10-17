@@ -1,1 +1,0 @@
-<h1>Welcome to Iloilo National High School Computerized Enrollment System</h1>
