@@ -24,4 +24,4 @@
 	
 	$registry->db->close();	
 	
-	unset($registry);
+	unset($registry); // trashing
