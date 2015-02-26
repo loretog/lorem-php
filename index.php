@@ -10,7 +10,7 @@
 	define('URL', (isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] : "http://") . $_SERVER['SERVER_NAME'] . DIR); // absolute URL of the site
 	define('DS', DIRECTORY_SEPARATOR);
 
-	require 'config.php';
+	require 'config.php';	
 	require 'init.php';
 
 	if( isset( $_GET ) && !empty( $_GET ) ) {

@@ -1,3 +1,3 @@
-<?php
+<?php	
 
-	$DB = new mysqli( $DBHOST, $DBUSER, $DBPASS, $DBNAME );
+	$DB = new mysqli( DBHOST, DBUSER, DBPASS, DBNAME );
