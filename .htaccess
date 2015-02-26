@@ -1,6 +1,7 @@
 RewriteEngine on
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+RewriteBase /
 
-RewriteRule ^(.*)$ index.php?route=$1 [L,QSA] #[last rule, query string append]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
