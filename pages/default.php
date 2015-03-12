@@ -1,10 +1,10 @@
-<h1>default</h1>
+<?php include './elements/header.php'; ?>
 
-<?php 
-	$test = $DB->query( "SELECT * FROM samp" );
 
-	while( $r = $test->fetch_object() ) {
-		echo $r->name . "<br>";
-	}
-?>
+<div class="jumbotron">
+  <h1>Hello, world!</h1>
+  <p>...</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+</div>
 
+<?php include './elements/footer.php'; ?>

@@ -12,8 +12,9 @@
 
 	require 'config.php';	
 	require 'init.php';
+	require 'actions.php';
 
-	if( isset( $_GET ) && !empty( $_GET ) ) {
+	if( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ) {
 		if( file_exists( './pages/' . $_GET[ 'page' ] . ".php" ) ) {
 			require './pages/' . $_GET[ 'page' ] . ".php";
 		} else {
