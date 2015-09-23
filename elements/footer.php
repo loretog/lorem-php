@@ -1,6 +1,6 @@
 				<!-- END OF CONTENT -->
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-4 col-md-4">
 					<div class="list-group">
 					  <a href="#" class="list-group-item active">
 					    Cras justo odio

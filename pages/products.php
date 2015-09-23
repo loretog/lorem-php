@@ -29,7 +29,7 @@
 			<td><?php echo $product->name ?></td>
 			<th>
 				<a href="./?page=edit_product&id=<?php echo $product->id ?>">Edit</a>
-				<a href="./?page=delete_product&id=<?php echo $product->id ?>">Delete</a>
+				<a href="./?page=delete_product&id=<?php echo $product->id ?>&action=delete_product">Delete</a>
 			</th>
 		</tr>
 		<?php 

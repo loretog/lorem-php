@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Awesome Site</title>
@@ -65,9 +65,9 @@
 			</div>
 			<?php 
 				if( !empty( $MESSAGE ) ) {
-					echo "<div class='row'><div class='col-lg-12'><div class='alert alert-success'>$MESSAGE</div></div></div>";
+					echo "<div class='row'><div class='col-lg-12'><div class='alert alert-$MESSAGE_TYPE'>$MESSAGE</div></div></div>";
 				} 
 			?>
 			<div class="main-content row">				
-				<div class="col-lg-8">
+				<div class="col-lg-8 col-md-8">
 				<!-- START OF CONTENT -->
