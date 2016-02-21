@@ -7,7 +7,7 @@
 	define('ROOT', realpath(dirname(__FILE__))); // absolute path of the directory
 	$dir = ((dirname($_SERVER['PHP_SELF']) == "/") ? "" : dirname($_SERVER['PHP_SELF']));
 	define('DIR', $dir); // directory name
-	define('URL', (isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] : "http://") . $_SERVER['SERVER_NAME'] . DIR); // absolute URL of the site
+	define('URL', (isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] : "http://") . $_SERVER['SERVER_NAME'] . ( isset( $_SERVER[ 'SERVER_PORT' ] ) ? ":" . $_SERVER[ 'SERVER_PORT' ] : "") . DIR ); // absolute URL of the site
 
 	define('DS', DIRECTORY_SEPARATOR);
 

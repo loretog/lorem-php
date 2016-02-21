@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Awesome Site</title>
-		<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo URL ?>/bootstrap/css/bootstrap.min.css">
 	</head>
 
 	<body>
