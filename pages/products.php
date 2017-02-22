@@ -1,4 +1,4 @@
-<?php include './elements/header.php'; ?>
+<?php element( 'header' ); ?>
 
 <?php
 	$products = $DB->query( "SELECT * FROM products" );	
@@ -43,4 +43,4 @@
 </table>
 
 
-<?php include './elements/footer.php'; ?>
+<?php element( 'footer' ); ?>
