@@ -9,7 +9,7 @@ if( isset( $_POST ) ) {
 		$MESSAGE = "Product successfully added!";
 		$MESSAGE_TYPE = "danger";
 	} else {
-		$MESSAGE = "Failed to add new Product";
+		$MESSAGE = "Failed to add new Product. " . $DB->error;
 		$MESSAGE_TYPE = "danger";
 	}
 

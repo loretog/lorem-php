@@ -1,2 +1,4 @@
 <?php if( ! defined( 'ACCESS' ) ) die( 'DIRECT ACCESS NOT ALLOWED' ); ?>
-404 page not found
+<?php element( 'header' ); ?>
+<h1>404 page not found</h1>
+<?php element( 'footer' ); ?>
