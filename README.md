@@ -1,6 +1,4 @@
 lorem-framework
 ===============
 
-personal php framework
-
-test
+a tool for beginners
