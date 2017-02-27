@@ -9,7 +9,9 @@
 	define('DIR', $dir); // directory name
 	define('URL', (isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] : "http://") . $_SERVER['SERVER_NAME'] . ( isset( $_SERVER[ 'SERVER_PORT' ] ) ? ":" . $_SERVER[ 'SERVER_PORT' ] : "") . DIR ); // absolute URL of the site
 
-	define('DS', DIRECTORY_SEPARATOR);	
+	define('DS', DIRECTORY_SEPARATOR);
+
+	define( 'ACCESS', true );	
 
 	require 'config.php';	
 	require 'init.php';
