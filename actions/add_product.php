@@ -1,3 +1,4 @@
+<?php if( ! defined( 'ACCESS' ) ) die( 'DIRECT ACCESS NOT ALLOWED' ); ?>
 <?php
 
 if( isset( $_POST ) ) {
@@ -8,7 +9,7 @@ if( isset( $_POST ) ) {
 		$MESSAGE = "Product successfully added!";
 		$MESSAGE_TYPE = "danger";
 	} else {
-		$MESSAGE = "Failed to add new Product";
+		$MESSAGE = "Failed to add new Product. " . $DB->error;
 		$MESSAGE_TYPE = "danger";
 	}
 

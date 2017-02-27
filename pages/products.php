@@ -1,3 +1,4 @@
+<?php if( ! defined( 'ACCESS' ) ) die( 'DIRECT ACCESS NOT ALLOWED' ); ?>
 <?php element( 'header' ); ?>
 
 <?php
@@ -28,8 +29,8 @@
 			<td><?php echo $cnt; ?></td>
 			<td><?php echo $product->name ?></td>
 			<th>
-				<a href="./?page=edit_product&id=<?php echo $product->id ?>">Edit</a>
-				<a href="./?page=delete_product&id=<?php echo $product->id ?>&action=delete_product">Delete</a>
+				<a href="<?php echo SITE_URL ?>/?page=edit_product&id=<?php echo $product->id ?>">Edit</a>
+				<a href="<?php echo SITE_URL ?>/?page=delete_product&id=<?php echo $product->id ?>&action=delete_product">Delete</a>
 			</th>
 		</tr>
 		<?php 

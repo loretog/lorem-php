@@ -1,3 +1,4 @@
+<?php if( ! defined( 'ACCESS' ) ) die( 'DIRECT ACCESS NOT ALLOWED' ); ?>
 				<!-- END OF CONTENT -->
 				</div>
 				<div class="col-lg-4 col-md-4">

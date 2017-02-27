@@ -1,8 +1,9 @@
+<?php if( ! defined( 'ACCESS' ) ) die( 'DIRECT ACCESS NOT ALLOWED' ); ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Awesome Site</title>
-		<link rel="stylesheet" type="text/css" href="<?php echo URL ?>/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo SITE_URL ?>/bootstrap/css/bootstrap.min.css">
 	</head>
 
 	<body>
