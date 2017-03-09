@@ -12,8 +12,9 @@
 
 	require 'config.php';	
 	require 'init.php';
+	require 'authentication.php';
 	require 'functions.php';
-	require 'actions.php';
+	require 'actions.php';	
 
 	if( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ) {
 		if( file_exists( ROOT_DIR . '/pages/' . $_GET[ 'page' ] . ".php" ) ) {
