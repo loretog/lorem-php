@@ -13,4 +13,4 @@ ONLY SET THESE IF YOU WANT TO ALLOW AUTHENTICATION
 IF NOT THEN JUST COMMENT THEM OUT 
 */
 define( 'AUTH_NAME', 'USERID' );
-$restricted_pages = array( "products" );
+$restricted_pages = array( "users", "products" );
