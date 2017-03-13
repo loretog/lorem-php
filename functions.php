@@ -7,13 +7,13 @@ function element( $el ) {
 }
 
 function set_message( $msg ) {
-	$_SESSION[ 'MESSAGE' ] = $msg;
+	$_SESSION[ 'MESSAGE' ] = $msg; 
 }
 
 function show_message() {
-	echo "<div class='alert'>xxx" . $_SESSION[ 'MESSAGE' ] . "</div>";
-	//unset( $_SESSION[ 'MESSAGE' ] );
+	echo "<div class='alert'>" . $_SESSION[ 'MESSAGE' ] . "</div>";	
 }
+
 
 /* ADD YOUR CUSTOM FUNCTIONS IN custom_functions.php */
 require 'custom_functions.php';

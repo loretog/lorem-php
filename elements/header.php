@@ -1,5 +1,5 @@
 <?php if( ! defined( 'ACCESS' ) ) die( 'DIRECT ACCESS NOT ALLOWED' ); ?>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 	<head>
 		<title>Awesome Site</title>
@@ -44,7 +44,10 @@
 					            <li class="divider"></li>
 					            <li><a href="#">One more separated link</a></li>
 					          </ul>
-					        </li>
+					        </li>					        
+					        <?php if( isset( $_SESSION[ AUTH_ID ] ) ) { ?>
+					        <li><a href="./?action=logout">Logout</a></li>
+					        <?php } ?>
 					      </ul>					     
 					      <ul class="nav navbar-nav navbar-right">
 					        <li><a href="#">Link</a></li>
