@@ -1,5 +1,5 @@
 <?php if( ! defined( 'ACCESS' ) ) die( 'DIRECT ACCESS NOT ALLOWED' ); ?>
-<?php include './elements/header.php'; ?>
+<?php element( 'header' ); ?>
 
 
 <div class="jumbotron">
@@ -8,4 +8,4 @@
   <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
 </div>
 
-<?php include './elements/footer.php'; ?>
+<?php element( 'footer' ); ?>
