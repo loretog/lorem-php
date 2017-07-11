@@ -12,6 +12,7 @@ function set_message( $msg ) {
 
 function show_message() {
 	echo "<div class='alert'>" . $_SESSION[ 'MESSAGE' ] . "</div>";	
+	$_SESSION[ 'MESSAGE' ] = null;	
 }
 
 
