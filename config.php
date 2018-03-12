@@ -16,4 +16,4 @@ IF NOT THEN JUST COMMENT THEM OUT
 define( 'AUTH_ID', 'userid' );
 define( 'AUTH_NAME', 'username' );
 define( 'AUTH_TYPE', 'usertype' );
-$restricted_pages = array( "payments", "shop", "users", "products" );
+//$restricted_pages = array( "payments", "shop", "users", "products" );
