@@ -17,6 +17,8 @@ define( 'AUTH_ID', 'userid' );
 define( 'AUTH_NAME', 'username' );
 define( 'AUTH_TYPE', 'usertype' );
 
+define( 'LOGIN_REDIRECT', 'login' ); // login.php
+
 /*
 	TO USE:
 		To add restricted pages, just uncomment the variable $restricted_pages,
@@ -24,4 +26,8 @@ define( 'AUTH_TYPE', 'usertype' );
 		When added, these pages will not be accessible unless the SESSION AUTH_ID
 		is assigned with a value.
 */
-//$restricted_pages = array( "payments", "shop", "users", "products" );
+$restricted_pages[ 'admin' ][ 'access' ] 	= [ "payments", "shop", "users", "products" ];
+$restricted_pages[ 'user' ][ 'access' ] 	= [ "vote" ];
+
+$restricted_pages[ 'default_user' ] 			= [ "user" ];
+$restricted_pages[ 'login_page' ] 				= [ "login" ];
