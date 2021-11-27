@@ -15,13 +15,6 @@
 	require 'functions.php';	
 	require 'authentication.php';	
 	require 'actions.php';			
+	require 'page.php';
 
-	if( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ) {
-		if( file_exists( ROOT_DIR . '/pages/' . $_GET[ 'page' ] . ".php" ) ) {
-			require ROOT_DIR . '/pages/' . $_GET[ 'page' ] . ".php";
-		} else {
-			require ROOT_DIR . '/pages/404.php';
-		}
-	} else {
-		require ROOT_DIR . '/pages/default.php';
-	}	 
+	$DB->close();
