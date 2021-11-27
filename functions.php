@@ -95,7 +95,7 @@ function update_record( $name, $id, $fields = [] ) {
 		}
 		$f = implode( ",", $f );	
 		$sql = "UPDATE $name SET $f WHERE {$id['key']}={$id['val']}";
-		echo $sql; exit;
+		
 		return $DB->query( $sql );
 	} else {
 		return false;
