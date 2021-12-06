@@ -25,34 +25,37 @@ function redirect( $page = "", $q = "" ) {
 }
 
 function has_access( $redirect = false ) {
-	global $restricted_pages;
+	global $restricted_pages;	
+	if( isset( $_SESSION[ AUTH_ID ] ) ) { 		
 
-	if( isset( $_REQUEST[ 'action' ] ) ) return;
-	 
-	$page = clean( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : 'default' );
-	$type = clean( isset( $_SESSION[ AUTH_TYPE ] ) && !empty( $_SESSION[ AUTH_TYPE ] ) ? $_SESSION[ AUTH_TYPE ] : 'default' );
+		if( isset( $_REQUEST[ 'action' ] ) ) return;
+		 
+		$page = clean( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : 'default' );
+		$type = clean( isset( $_SESSION[ AUTH_TYPE ] ) && !empty( $_SESSION[ AUTH_TYPE ] ) ? $_SESSION[ AUTH_TYPE ] : 'default' );
 
-	if( isset( $restricted_pages ) && !empty( $restricted_pages ) ) {		
-		if( isset( $restricted_pages[ $type ] ) && !empty( $restricted_pages[ $type ] ) ) {		
-			if( isset( $page ) && !empty( $page ) ) {	
-				if( array_search( $page, $restricted_pages[ $type ] ) === false && $page != LOGIN_REDIRECT ) {				
-					// no access, either redirect to a page or return false	
-					if( $redirect ) {					
-						set_message( "You have no access to page $page", "warning" );
-						redirect( $restricted_pages[ $type ][ 'default_page' ] );
-					}	else {							
-						return false;
+		if( isset( $restricted_pages ) && !empty( $restricted_pages ) ) {		
+			if( isset( $restricted_pages[ $type ] ) && !empty( $restricted_pages[ $type ] ) ) {						
+				if( isset( $page ) && !empty( $page ) ) {	
+					if( array_search( $page, $restricted_pages[ $type ][ 'access' ] ) === false && ( $page != LOGIN_REDIRECT || $restricted_pages[ $type ][ 'default_page' ] != $page ) ) {				
+						// 
+						// no access, either redirect to a page or return false							
+						if( $redirect ) {					
+							set_message( "You have no access to page $page", "warning" );
+							redirect( $restricted_pages[ $type ][ 'default_page' ] );
+						}	else {							
+							return false;
+						}
+					} else {						
+						return true;				
 					}
-				} else {
-					return true;				
 				}
+			} else {
+				set_message( "User type is not found.", "warning" );
+				unset( $_SESSION[ AUTH_ID ] );
+				unset( $_SESSION[ AUTH_NAME ] );
+				unset( $_SESSION[ AUTH_TYPE ] );
+				redirect();
 			}
-		} else {
-			set_message( "User type is not found.", "warning" );
-			unset( $_SESSION[ AUTH_ID ] );
-			unset( $_SESSION[ AUTH_NAME ] );
-			unset( $_SESSION[ AUTH_TYPE ] );
-			redirect();
 		}
 	}
 }
