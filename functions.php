@@ -131,5 +131,14 @@ function log_errors( $message ) {
 	global $DB;
 	$DB->query( "INSERT INTO error_logs1 (message) VALUES('$message')" );
 }
+
+/* function alink( $page, $query_string = [], $att = [] ) {
+	if( $page ) {		
+		if( !empty( $query_string ) ) {
+
+		}
+		return "<a href='" . SITE_URL . "/?page=$page'></a>";
+	}
+} */
 /* ADD YOUR CUSTOM FUNCTIONS IN custom_functions.php */
 require 'custom_functions.php';
