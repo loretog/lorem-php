@@ -2,7 +2,7 @@
 <!DOCTYPE html> 
 <html>
 	<head>
-		<title>Lorem Framework</title>
+		<title><?php echo SITE_TITLE ?></title>
 		<link rel="stylesheet" type="text/css" href="<?php echo SITE_URL ?>/assets/bootstrap/css/bootstrap.min.css">
 	</head>
 
@@ -17,7 +17,7 @@
 
 				<div class="header col-lg-12">
 					<div class="page-header">
-					  <h1>Lorem Framework <small></small></h1>
+					  <h1><?php echo SITE_TITLE ?> <small></small></h1>
 					</div>				
 				</div>
 

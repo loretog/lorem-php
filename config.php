@@ -7,6 +7,9 @@ define( 'DBUSER', 'root' );
 define( 'DBPASS', '' );
 define( 'DBNAME', 'mysite' );
 
+define( 'SITE_TITLE', 'Lorem Framework' );
+
+
 /* 
 NOTE:
 ONLY SET THESE IF YOU WANT TO ALLOW AUTHENTICATION 
@@ -26,13 +29,7 @@ define( 'LOGIN_REDIRECT', 'login' ); // login.php
 		When added, these pages will not be accessible unless the SESSION AUTH_ID
 		is assigned with a value.
 */
-/*$restricted_pages[ 'admin' ][ 'access' ] 	= [ "payments", "shop", "users", "products" ];
-$restricted_pages[ 'user' ][ 'access' ] 	= [ "vote" ];
-
-$restricted_pages[ 'default_user' ] 			= [ "user" ];
-$restricted_pages[ 'login_page' ] 				= [ "login" ];*/
-
-
+/*
 $restricted_pages[ 'admin' ] = [ "default", "users" ];
 $restricted_pages[ 'admin' ][ 'default_page' ] = "default";
 
@@ -41,3 +38,4 @@ $restricted_pages[ 'officer' ][ 'default_page' ] = "default";
 
 $restricted_pages[ 'default' ] = [ "my-account" ];
 $restricted_pages[ 'default' ][ 'default_page' ] = "default";
+*/
