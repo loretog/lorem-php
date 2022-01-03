@@ -16,11 +16,13 @@ ONLY SET THESE IF YOU WANT TO ALLOW AUTHENTICATION
 IF NOT THEN JUST COMMENT THEM OUT 
 */
 
+// table columns found in your 'users' table
 define( 'AUTH_ID', 'userid' );
 define( 'AUTH_NAME', 'username' );
 define( 'AUTH_TYPE', 'usertype' );
 
-define( 'LOGIN_REDIRECT', 'login' ); // login.php
+// default page to login, name of the file found in /pages
+define( 'LOGIN_REDIRECT', 'login' ); 
 
 /*
 	TO USE:
