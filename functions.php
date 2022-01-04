@@ -69,6 +69,8 @@ function all_records( $name ) {
 	return $DB->query( "SELECT * FROM $name" );
 }
 
+// sample
+// update_record( "persons", [ 'name' => 'john', 'age' => 20 ] )
 function add_record( $name, $fields = [] ) {
 	global $DB;
 
