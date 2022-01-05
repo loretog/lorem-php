@@ -3,7 +3,7 @@
 if( ! defined( 'ACCESS' ) ) die( 'DIRECT ACCESS NOT ALLOWED' );
 
 if( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ) {
-  $page = clean( $_GET[ 'page' ] );
+  $page = $_GET[ 'page' ];
   if( file_exists( ROOT_DIR . '/pages/' . $page . ".php" ) ) {
     require ROOT_DIR . '/pages/' . $page . ".php";
   } else {
