@@ -26,18 +26,16 @@ function redirect( $page = "", $q = "" ) {
 
 function has_access( $redirect = false ) {
 	global $restricted_pages;	
+	$page = clean( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : 'default' );
 	if( isset( $_SESSION[ AUTH_ID ] ) ) { 		
 
-		if( isset( $_REQUEST[ 'action' ] ) ) return;
-		 
-		$page = clean( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : 'default' );
+		if( isset( $_REQUEST[ 'action' ] ) ) return;		 		
 		$type = clean( isset( $_SESSION[ AUTH_TYPE ] ) && !empty( $_SESSION[ AUTH_TYPE ] ) ? $_SESSION[ AUTH_TYPE ] : 'default' );
 
 		if( isset( $restricted_pages ) && !empty( $restricted_pages ) ) {		
 			if( isset( $restricted_pages[ $type ] ) && !empty( $restricted_pages[ $type ] ) ) {						
 				if( isset( $page ) && !empty( $page ) ) {	
-					if( array_search( $page, $restricted_pages[ $type ][ 'access' ] ) === false && ( $page != LOGIN_REDIRECT || $restricted_pages[ $type ][ 'default_page' ] != $page ) ) {				
-						// 
+					if( array_search( $page, $restricted_pages[ $type ][ 'access' ] ) === false && ( $page != LOGIN_REDIRECT && $restricted_pages[ $type ][ 'default_page' ] != $page ) ) {				
 						// no access, either redirect to a page or return false							
 						if( $redirect ) {					
 							set_message( "You have no access to page $page", "warning" );
@@ -45,7 +43,7 @@ function has_access( $redirect = false ) {
 						}	else {							
 							return false;
 						}
-					} else {						
+					} else {
 						return true;				
 					}
 				}
@@ -55,6 +53,17 @@ function has_access( $redirect = false ) {
 				unset( $_SESSION[ AUTH_NAME ] );
 				unset( $_SESSION[ AUTH_TYPE ] );
 				redirect();
+			}
+		}
+	} else {
+		if( isset( $restricted_pages ) ) {
+			foreach( $restricted_pages as $pages ) {
+				if( isset( $pages[ 'access' ] ) ) {
+					if( in_array( $page, $pages[ 'access' ] ) ) {
+						set_message( "You have no access to page $page", "warning" );
+						redirect( 'default_page' );
+					}
+				}
 			}
 		}
 	}
@@ -69,8 +78,6 @@ function all_records( $name ) {
 	return $DB->query( "SELECT * FROM $name" );
 }
 
-// sample
-// update_record( "persons", [ 'name' => 'john', 'age' => 20 ] )
 function add_record( $name, $fields = [] ) {
 	global $DB;
 
@@ -100,7 +107,7 @@ function update_record( $name, $id, $fields = [] ) {
 		}
 		$f = implode( ",", $f );	
 		$sql = "UPDATE $name SET $f WHERE {$id['key']}={$id['val']}";
-		
+		//echo $sql; exit;
 		return $DB->query( $sql );
 	} else {
 		return false;
@@ -133,14 +140,5 @@ function log_errors( $message ) {
 	global $DB;
 	$DB->query( "INSERT INTO error_logs1 (message) VALUES('$message')" );
 }
-
-/* function alink( $page, $query_string = [], $att = [] ) {
-	if( $page ) {		
-		if( !empty( $query_string ) ) {
-
-		}
-		return "<a href='" . SITE_URL . "/?page=$page'></a>";
-	}
-} */
 /* ADD YOUR CUSTOM FUNCTIONS IN custom_functions.php */
 require 'custom_functions.php';
