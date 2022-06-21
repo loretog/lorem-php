@@ -13,7 +13,7 @@ function set_message( $msg, $type = "success" ) {
 
 function show_message() {		
 	if( isset( $_SESSION[ 'MESSAGE' ] ) && !empty( $_SESSION[ 'MESSAGE' ] ) ) {
-		echo "<div class='alert alert-" . $_SESSION[ 'MESSAGE_TYPE' ] . "'>" . $_SESSION[ 'MESSAGE' ] . "</div>";	
+		echo "<div class='alert alert-" . $_SESSION[ 'MESSAGE_TYPE' ] . " m-2'>" . $_SESSION[ 'MESSAGE' ] . "</div>";	
 		unset( $_SESSION[ 'MESSAGE' ] );	
 		unset( $_SESSION[ 'MESSAGE_TYPE' ] );
 	}

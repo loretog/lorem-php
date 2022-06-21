@@ -1,12 +1,16 @@
 <?php if( ! defined( 'ACCESS' ) ) die( 'DIRECT ACCESS NOT ALLOWED' ); ?>
-				<!-- END OF CONTENT -->
-				</div>
-			</div>
-			<hr>
-			<div class="footer col-lg-12">
-				<a href="<?php echo SITE_URL ?>">Home</a>			
-			</div>
-		</div>		
-		<script type="text/javascript" src="<?php echo SITE_URL ?>/assets/bootstrap/js/bootstrap.min.js"></script>
-	</body>
+		</div>
+      </div>
+      <div class="row footer fixed-bottom p-3 bg-light">
+        <div class="col">
+			&copy; <?= SITE_TITLE ?>
+		</div>
+      </div>
+    </div>
+
+    <script src="<?= SITE_URL ?>/assets/bootstrap-5.2/js/bootstrap.bundle.min.js"></script>
+	  <script src="<?= SITE_URL ?>/assets/js/jquery-3.6.0.min.js"></script>	
+    <script src="<?= SITE_URL ?>/assets/js/ckeditor.js"></script>	
+    <script src="<?= SITE_URL ?>/assets/js/script.js?sid=<?= md5(time()) ?>"></script>
+  </body>
 </html>
