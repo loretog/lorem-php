@@ -20,17 +20,9 @@
         <div class="col-6 bg-light m-auto p-3 rounded">
           <div class="row">
             <div class="col">
-              <ul class="nav justify-content-center">
-                <li class="nav-item">
-                  <a class="nav-link" href="<?= SITE_URL ?>/">Survey</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?= SITE_URL ?>/?page=dashboard">Dashboard</a>
-                </li>            
-              </ul>
+              <?= element( 'menu' ) ?>
             </div>
           </div>
-          <hr>
           <form method="post">
             <input type="hidden" name="action" value="save-survey">
             <h1 class="text-center">Covid Survey</h1>
