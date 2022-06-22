@@ -13,22 +13,24 @@
       * { font-family: Roboto; }
     </style>
   </head>
-  <body>
+  <body style="background: url('<?= SITE_URL ?>/assets/images/covid-map.jpg') center center no-repeat;">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <ul class="nav justify-content-center p-4 bg-dark">
-            <li class="nav-item">
-              <a class="nav-link" href="<?= SITE_URL ?>/">Survey</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= SITE_URL ?>/?page=dashboard">Dashboard</a>
-            </li>            
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6 bg-secondary m-auto p-3">
+      
+      <div class="row m-4">      
+        <div class="col-6 bg-light m-auto p-3 rounded">
+          <div class="row">
+            <div class="col">
+              <ul class="nav justify-content-center">
+                <li class="nav-item">
+                  <a class="nav-link" href="<?= SITE_URL ?>/">Survey</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?= SITE_URL ?>/?page=dashboard">Dashboard</a>
+                </li>            
+              </ul>
+            </div>
+          </div>
+          <hr>
           <form method="post">
             <input type="hidden" name="action" value="save-survey">
             <h1 class="text-center">Covid Survey</h1>
@@ -57,7 +59,7 @@
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Nationality:</label>
-              <input type="text" class="form-control" id="" placeholder="Your country of Origin" name="data[nationality]" required>
+              <input type="text" class="form-control" id="" placeholder="Your country of Origin" name="data[nationality]" value="Filipino" required>
             </div>  
             <hr>
             <div class="row">
