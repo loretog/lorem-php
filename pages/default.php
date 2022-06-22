@@ -40,7 +40,7 @@
               <input type="text" class="form-control" id="" placeholder="Last Name, First Name" name="data[name]" required>
             </div>
             <div class="row">
-              <div class="col mb-3">
+              <div class="col-2 mb-3">
                 <label for="" class="form-label">Gender</label>
                 <select class="form-select" name="data[gender]" required>
                   <option selected></option>
@@ -48,7 +48,7 @@
                   <option value="female">Female</option>              
                 </select>
               </div>
-              <div class="col mb-3">
+              <div class="col-2 mb-3">
                 <label for="" class="form-label">Age</label>
                 <input type="number" class="form-control" id="" placeholder="Age" name="data[age]" required>
               </div>
@@ -56,11 +56,11 @@
                 <label for="" class="form-label">Mobile Number</label>
                 <input type="text" class="form-control" id="" placeholder="###-#####-###" name="data[mobile]" required>
               </div>
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Nationality:</label>
-              <input type="text" class="form-control" id="" placeholder="Your country of Origin" name="data[nationality]" value="Filipino" required>
-            </div>  
+              <div class="col mb-3">
+                <label for="" class="form-label">Nationality:</label>
+                <input type="text" class="form-control" id="" placeholder="Your country of Origin" name="data[nationality]" value="Filipino" required>
+              </div>
+            </div>              
             <hr>
             <div class="row">
               <div class="col mb-3">
