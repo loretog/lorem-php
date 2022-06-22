@@ -5,9 +5,9 @@ if( ! defined( 'ACCESS' ) ) die( 'DIRECT ACCESS NOT ALLOWED' );
 define( 'DBHOST', 'localhost' );
 define( 'DBUSER', 'root' );
 define( 'DBPASS', '' );
-define( 'DBNAME', 'mysite' );
+define( 'DBNAME', 'dict_covid_tracker' );
 
-define( 'SITE_TITLE', 'Lorem Framework' );
+define( 'SITE_TITLE', 'DICT Covid Tracker' );
 
 
 /* 
