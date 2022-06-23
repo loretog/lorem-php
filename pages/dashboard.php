@@ -35,8 +35,8 @@
                             $encounters = $DB->query("SELECT COUNT(encounter) AS cnt FROM SURVEYS WHERE encounter='yes' GROUP BY encounter;");
                             $encounter = $encounters->fetch_object();
                         ?>
-                        <h5 class="card-title text-center"><?= $encounter->cnt ?></h5>
-                        <p class="card-text text-center">COVID-19 Encounter</p>
+                        <h5 class="card-title text-center"><?= isset($encounter->cnt) ? $encounter->cnt : '0' ?></h5>
+                        <p class="card-text text-center">COVID-19 Encountered</p>
                     </div>                    
                 </div>
             </div>
@@ -48,7 +48,7 @@
                             $vaccinated = $DB->query("SELECT COUNT(vacinated) AS cnt FROM SURVEYS WHERE vacinated='yes' GROUP BY encounter;");
                             $vaccine = $vaccinated->fetch_object();
                         ?>
-                        <h5 class="card-title text-center"><?= $vaccine->cnt ?></h5>
+                        <h5 class="card-title text-center"><?= isset($vaccine->cnt) ? $vaccine->cnt : 0; ?></h5>
                         <p class="card-text text-center">Vaccinated</p>
                     </div>                    
                 </div>
@@ -57,7 +57,11 @@
                 <div class="card mb-2" style="width: 18rem;">
                     <img src="<?= SITE_URL ?>/assets/images/fever.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title text-center">200</h5>
+                        <?php
+                            $fevers = $DB->query("SELECT COUNT(bodytemp) AS cnt FROM SURVEYS WHERE bodytemp>37 GROUP BY bodytemp");
+                            $fever = $fevers->fetch_object();
+                        ?>
+                        <h5 class="card-title text-center"><?= isset($fever->cnt ) ? $fever->cnt : '0' ?></h5>
                         <p class="card-text text-center">Fever</p>
                     </div>                    
                 </div>
@@ -66,7 +70,11 @@
                 <div class="card mb-2" style="width: 18rem;">
                     <img src="<?= SITE_URL ?>/assets/images/encounter.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title text-center">200</h5>
+                        <?php
+                            $adults = $DB->query("SELECT COUNT(age) AS cnt FROM SURVEYS WHERE age>18 GROUP BY age");
+                            $adult = $adults->fetch_object();
+                        ?>
+                        <h5 class="card-title text-center"><?= isset($adult->cnt ) ? $adult->cnt : '0' ?></h5>
                         <p class="card-text text-center">Adult</p>
                     </div>                    
                 </div>
@@ -75,7 +83,11 @@
                 <div class="card mb-2" style="width: 18rem;">
                     <img src="<?= SITE_URL ?>/assets/images/encounter.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title text-center">200</h5>
+                        <?php
+                            $minors = $DB->query("SELECT COUNT(age) AS cnt FROM SURVEYS WHERE age<=18 GROUP BY age");
+                            $minor = $minors->fetch_object();
+                        ?>
+                        <h5 class="card-title text-center"><?= isset($minor->cnt ) ? $minor->cnt : '0' ?></h5>
                         <p class="card-text text-center">Minor</p>
                     </div>                    
                 </div>
@@ -84,7 +96,11 @@
                 <div class="card mb-2" style="width: 18rem;">
                     <img src="<?= SITE_URL ?>/assets/images/encounter.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title text-center">200</h5>
+                        <?php
+                            $foreigners = $DB->query("SELECT COUNT(nationality) AS cnt FROM SURVEYS WHERE nationality != 'Philippines' GROUP BY nationality");
+                            $foreigner = $foreigners->fetch_object();
+                        ?>
+                        <h5 class="card-title text-center"><?= isset($foreigner->cnt ) ? $foreigner->cnt : '0' ?></h5>
                         <p class="card-text text-center">Foreigner</p>
                     </div>                    
                 </div>

@@ -1,5 +1,7 @@
-lorem-framework
+lorem-framework - by Loreto Gabawa Jr.
 ===============
+
+https://github.com/loretog/lorem-framework
 
 a tool for beginners
 
