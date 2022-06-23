@@ -31,7 +31,11 @@
                 <div class="card mb-2" style="width: 18rem;">
                     <img src="<?= SITE_URL ?>/assets/images/encounter.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title text-center">200</h5>
+                        <?php
+                            $encounters = $DB->query("SELECT COUNT(encounter) AS cnt FROM SURVEYS WHERE encounter='yes' GROUP BY encounter;");
+                            $encounter = $encounters->fetch_object();
+                        ?>
+                        <h5 class="card-title text-center"><?= $encounter->cnt ?></h5>
                         <p class="card-text text-center">COVID-19 Encounter</p>
                     </div>                    
                 </div>
@@ -40,7 +44,11 @@
                 <div class="card mb-2" style="width: 18rem;">
                     <img src="<?= SITE_URL ?>/assets/images/vaccinated.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title text-center">200</h5>
+                        <?php
+                            $vaccinated = $DB->query("SELECT COUNT(vacinated) AS cnt FROM SURVEYS WHERE vacinated='yes' GROUP BY encounter;");
+                            $vaccine = $vaccinated->fetch_object();
+                        ?>
+                        <h5 class="card-title text-center"><?= $vaccine->cnt ?></h5>
                         <p class="card-text text-center">Vaccinated</p>
                     </div>                    
                 </div>
