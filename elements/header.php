@@ -32,10 +32,28 @@
           </a>
           <a href="<?= SITE_URL ?>/?page=to-do-list" class="list-group-item list-group-item-action <?= isset($_GET[ 'page' ]) && $_GET[ 'page' ] == "to-do-list" ? 'active' : '' ?>">To-Do List</a>
           <a href="<?= SITE_URL ?>/?page=topics" class="list-group-item list-group-item-action <?= isset($_GET[ 'page' ]) && $_GET[ 'page' ] == "topics" ? 'active' : '' ?>">Topics</a>
-          <a href="<?= SITE_URL ?>/?page=activities" class="list-group-item list-group-item-action <?= isset($_GET[ 'page' ]) && $_GET[ 'page' ] == "activities" ? 
-          'active' : '' ?>">Activities</a>				
+          <a href="<?= SITE_URL ?>/?page=activities" class="list-group-item list-group-item-action <?= isset($_GET[ 'page' ]) && ($_GET[ 'page' ] == "activities" || $_GET[ 'page' ] == "view-activity" || $_GET[ 'page' ] == "new-activity-file" ) ? 
+          'active' : '' ?>">Activities</a>
+          <?php if( is_usertype( "professor" ) ) { ?>          		
+          <a href="<?= SITE_URL ?>/?page=students" class="list-group-item list-group-item-action <?= isset($_GET[ 'page' ]) && ($_GET[ 'page' ] == "students" ) ? 
+          'active' : '' ?>">Students</a>
+          <a href="<?= SITE_URL ?>/?page=professors" class="list-group-item list-group-item-action <?= isset($_GET[ 'page' ]) && ($_GET[ 'page' ] == "professors" || $_GET[ 'page' ] == "new-professor" ) ? 
+          'active' : '' ?>">Professors</a>
+          <?php } ?>
+
+          <a href="<?= SITE_URL ?>/?page=profile" class="list-group-item list-group-item-action <?= isset($_GET[ 'page' ]) && ($_GET[ 'page' ] == "profile" ) ? 
+          'active' : '' ?>">Profile</a>		
+
+          <?php if( is_usertype( "professor" ) ) { ?>          
+          <?php } else { ?>          
+          <?php } ?>
           <a href="<?= SITE_URL ?>/?action=logout" class="list-group-item list-group-item-action">Logout</a>
+
         </div>
+        <div class="m-2 text-light">
+          Welcome back <span class="fw-bold text-uppercase"><?= $_SESSION[ AUTH_NAME ] ?></span><br>
+          Logged in as <span class="fw-bold text-uppercase"><?= $_SESSION[ AUTH_TYPE ] ?></span>
+        </div>        
       </div>
           <div class="col left-content">
           <?= show_message(); ?>

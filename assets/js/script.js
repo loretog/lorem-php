@@ -8,11 +8,11 @@ ClassicEditor
 $(function() {
     if( $( ".todo-page" ).length ) {                
         $( ".to-do-checkbox" ).on('click', function() {            
-            $this = $(this);
+            $this = $(this);            
             $.ajax({
                 url: $siteUrl + "/?action=update-todolist-status",
                 method: "post",
-                data: { todoid: $this.val(), status: $this.prop("checked") },
+                data: { todoid: $this.val(), status: $this.prop("checked"), studentid: $this.data( 'student-id' ) },
                 success: function(response) {
                     if(response == "1") {                        
                         $this.parent().parent().parent().parent().removeClass('alert-success');

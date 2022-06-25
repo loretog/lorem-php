@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2022 at 12:54 AM
+-- Generation Time: Jun 25, 2022 at 02:45 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -41,11 +41,8 @@ CREATE TABLE `activities` (
 --
 
 INSERT INTO `activities` (`activityid`, `userid`, `title`, `content`, `created`, `updated`) VALUES
-(2, 1, 'asd fasdfa s', 'fasfa sdf asdf asdf asdfas df', '2022-06-21 00:15:14', '2022-06-21 00:15:14'),
-(3, 1, 'as sdfa sdfas dfasd f', 'asd fasdf asdf asdf', '2022-06-21 00:18:21', '2022-06-21 00:18:21'),
-(4, 1, 'ICT 101', 'asd fasdfa sdfas df', '2022-06-21 00:18:26', '2022-06-21 00:18:26'),
-(5, 1, 'ICT 110', 'asdf sdfs df', '2022-06-21 11:36:16', '2022-06-21 11:36:16'),
-(6, 1, 'English 191', 'asd asd asd', '2022-06-21 11:36:52', '2022-06-21 11:36:52');
+(9, 4, 'Activity 1', 'create a program using C++', '2022-06-25 11:50:42', '2022-06-25 11:50:42'),
+(10, 4, 'Activity 2', 'Create a program using C++ that will return the sum of two numbers', '2022-06-25 11:51:18', '2022-06-25 11:51:18');
 
 -- --------------------------------------------------------
 
@@ -56,6 +53,7 @@ INSERT INTO `activities` (`activityid`, `userid`, `title`, `content`, `created`,
 CREATE TABLE `activityfiles` (
   `activityfilesid` int(11) NOT NULL,
   `activityid` int(11) NOT NULL,
+  `studentid` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `fileurl` text NOT NULL,
   `filedir` text NOT NULL,
@@ -67,8 +65,8 @@ CREATE TABLE `activityfiles` (
 -- Dumping data for table `activityfiles`
 --
 
-INSERT INTO `activityfiles` (`activityfilesid`, `activityid`, `title`, `fileurl`, `filedir`, `created`, `updated`) VALUES
-(51, 6, 'as dasd asd', '/activityfiles/6/51/87055255_10160195140966840_4086214254573649920_o.jpg', 'activityfiles\\6\\87055255_10160195140966840_4086214254573649920_o.jpg', '2022-06-21 14:03:33', '2022-06-21 14:03:33');
+INSERT INTO `activityfiles` (`activityfilesid`, `activityid`, `studentid`, `title`, `fileurl`, `filedir`, `created`, `updated`) VALUES
+(60, 10, 6, 'asdasd', '/activityfiles/10/60/hnnnnng.jpg', 'activityfiles\\10\\hnnnnng.jpg', '2022-06-25 11:51:49', '2022-06-25 11:51:49');
 
 -- --------------------------------------------------------
 
@@ -81,7 +79,6 @@ CREATE TABLE `todolist` (
   `userid` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 0,
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -90,12 +87,38 @@ CREATE TABLE `todolist` (
 -- Dumping data for table `todolist`
 --
 
-INSERT INTO `todolist` (`todoid`, `userid`, `title`, `description`, `status`, `created`, `updated`) VALUES
-(6, 1, 'xxx asd asd asda sdasd', '123', 1, '2022-06-20 14:48:04', '2022-06-20 14:48:04'),
-(8, 1, 'test', 'test', 1, '2022-06-20 22:25:06', '2022-06-20 22:25:06'),
-(9, 1, 'test', 'test', 1, '2022-06-20 22:25:11', '2022-06-20 22:25:11'),
-(11, 1, 'jknkjn', 'kjbjkhbkh b', 0, '2022-06-21 00:02:18', '2022-06-21 00:02:18'),
-(12, 2, 'submit activity 1', 'activity from sir Lopez', 1, '2022-06-21 22:30:29', '2022-06-21 22:30:29');
+INSERT INTO `todolist` (`todoid`, `userid`, `title`, `description`, `created`, `updated`) VALUES
+(15, 4, 'asda', 'sdasdasd', '2022-06-25 10:04:30', '2022-06-25 10:04:30'),
+(16, 4, 'xxx', 'xxx', '2022-06-25 10:14:32', '2022-06-25 10:14:32'),
+(17, 4, 'asda', 'asd', '2022-06-25 10:17:08', '2022-06-25 10:17:08'),
+(18, 8, 'asdas xxxxxxx', 'dasdasd', '2022-06-25 10:18:08', '2022-06-25 10:18:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `todolist_status`
+--
+
+CREATE TABLE `todolist_status` (
+  `todoliststatusid` int(11) NOT NULL,
+  `todoid` int(11) NOT NULL,
+  `studentid` int(11) NOT NULL,
+  `todostatus` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `todolist_status`
+--
+
+INSERT INTO `todolist_status` (`todoliststatusid`, `todoid`, `studentid`, `todostatus`) VALUES
+(1, 18, 1, 1),
+(2, 16, 1, 0),
+(3, 18, 6, 1),
+(4, 17, 6, 1),
+(5, 15, 6, 1),
+(6, 16, 6, 1),
+(7, 17, 1, 0),
+(8, 15, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -117,9 +140,7 @@ CREATE TABLE `topics` (
 --
 
 INSERT INTO `topics` (`topicid`, `userid`, `title`, `content`, `created`, `updated`) VALUES
-(2, 1, 'sdfsd fgsfd gsdfg sdfg sdfg', '<p>sfd<strong>g dfg sdfgs dfgs dfgsfg dsfa sdfa sdfasd fas</strong>dfas dfasd fasd</p><blockquote><p>f asdfa sdf asdfa sdfa sdf</p></blockquote><p>a sdfa sdfa s</p><p>df asdfa sdf asdf asdf</p>', '2022-06-20 23:02:58', '2022-06-20 23:02:58'),
-(3, 1, 'tetwasdfa sdfa sdfa sdf xxxxxxxxxxxxxxxxxxxxxxxxx', '<p>d asdfa sd</p><p>fa sdfasdfas dfa sdfa sdf</p><ul><li>as dfas dfasdf</li><li>asdfas dfasd</li><li>asdfasdf</li></ul><p>sdfasdf asdf sdfsdfa</p>', '2022-06-20 23:04:31', '2022-06-20 23:04:31'),
-(4, 1, 'ICT 111', '<p>sd asd asd asd fds dfa sdf asdf</p><p>a sdfa sdfa sdfa sdfa&nbsp;</p><p>asdf asdf asdf</p>', '2022-06-20 23:25:47', '2022-06-20 23:25:47');
+(8, 4, 'asdas', '<p>da sdas das dasd</p>', '2022-06-25 11:02:27', '2022-06-25 11:02:27');
 
 -- --------------------------------------------------------
 
@@ -133,6 +154,9 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `password` varchar(50) NOT NULL,
   `usertype` varchar(30) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0,
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -141,9 +165,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userid`, `email`, `username`, `password`, `usertype`, `created`, `updated`) VALUES
-(1, 'test@gmail.com', 'johndoe', '5f4dcc3b5aa765d61d8327deb882cf99', '', '2022-06-20 13:20:29', '2022-06-20 13:20:29'),
-(2, 'test2@gmail.com', 'wanda', '5f4dcc3b5aa765d61d8327deb882cf99', '', '2022-06-21 22:25:52', '2022-06-21 22:25:52');
+INSERT INTO `users` (`userid`, `email`, `username`, `password`, `usertype`, `firstname`, `lastname`, `status`, `created`, `updated`) VALUES
+(1, 'test@gmail.com', 'johndoe', '1a1dc91c907325c69271ddf0c944bc72', 'student', 'John xxx', 'Doe', 1, '2022-06-20 13:20:29', '2022-06-20 13:20:29'),
+(4, 'admin@gmail.com', 'Corona', '5f4dcc3b5aa765d61d8327deb882cf99', 'professor', 'John', 'Corona', 1, '2022-06-23 19:01:50', '2022-06-23 19:01:50'),
+(6, 'test5@gmail.com', 'test5', '5f4dcc3b5aa765d61d8327deb882cf99', 'student', 'test', 'five', 1, '2022-06-25 07:24:28', '2022-06-25 07:24:28'),
+(8, 'marty@gmail.com', 'Marty', '5f4dcc3b5aa765d61d8327deb882cf99', 'professor', 'Marty', 'M.', 1, '2022-06-25 09:33:52', '2022-06-25 09:33:52');
 
 --
 -- Indexes for dumped tables
@@ -168,6 +194,12 @@ ALTER TABLE `todolist`
   ADD PRIMARY KEY (`todoid`);
 
 --
+-- Indexes for table `todolist_status`
+--
+ALTER TABLE `todolist_status`
+  ADD PRIMARY KEY (`todoliststatusid`);
+
+--
 -- Indexes for table `topics`
 --
 ALTER TABLE `topics`
@@ -187,31 +219,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activities`
 --
 ALTER TABLE `activities`
-  MODIFY `activityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `activityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `activityfiles`
 --
 ALTER TABLE `activityfiles`
-  MODIFY `activityfilesid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `activityfilesid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `todoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `todoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `todolist_status`
+--
+ALTER TABLE `todolist_status`
+  MODIFY `todoliststatusid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `topicid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `topicid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

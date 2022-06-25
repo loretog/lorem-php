@@ -3,7 +3,7 @@
 
 	has_access( true );
 
-	if( !isset( $_SESSION[ AUTH_ID] ) && ( $_GET[ 'page' ] != "login" && $_GET[ 'page' ] != "register" ) ) {
+/* 	if( !isset( $_SESSION[ AUTH_ID] ) && ( $_GET[ 'page' ] != "login" && $_GET[ 'page' ] != "register" ) ) {
 		redirect( 'login' );
 	}
-	
+	 */

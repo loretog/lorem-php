@@ -7,7 +7,7 @@
     <div class="col-6">
         <form method="post">
             <input type="hidden" name="action" value="new-topic">
-            <input type="hidden" name="data[userid]" value="<?= $_SESSION['userid'] ?>">
+            <input type="hidden" name="data[userid]" value="<?= $_SESSION[ AUTH_ID ] ?>">
             <div class="mb-3">
                 <label for="Title" class="form-label">Title</label>
                 <input type="text" class="form-control"name="data[title]">			
