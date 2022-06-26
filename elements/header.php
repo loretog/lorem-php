@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= SITE_TITLE ?></title>
-    <link href="<?= SITE_URL ?>/assets/bootstrap-5.2/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="<?= SITE_URL ?>/assets/bootstrap-5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= SITE_URL ?>/assets/bootstrap-icons-1.8.3/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= SITE_URL ?>/assets/css/style.css">
     <script>
@@ -24,7 +24,7 @@
           </ul>
         </div>
       </div>      
-      <div class="row main-content p-2">
+      <div class="row">
       <div class="col-2">
         <div class="list-group">
           <a href="<?= SITE_URL ?>/" class="list-group-item list-group-item-action <?= !isset($_GET[ 'page' ]) || empty($_GET[ 'page' ]) || $_GET[ 'page' ] == "" ? 'active' : '' ?>" aria-current="true">

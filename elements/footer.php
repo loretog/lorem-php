@@ -9,8 +9,7 @@
     </div>
 
     <script src="<?= SITE_URL ?>/assets/bootstrap-5.2/js/bootstrap.bundle.min.js"></script>
-	  <script src="<?= SITE_URL ?>/assets/js/jquery-3.6.0.min.js"></script>	
-    <script src="<?= SITE_URL ?>/assets/js/ckeditor.js"></script>	
+	  <script src="<?= SITE_URL ?>/assets/js/jquery-3.6.0.min.js"></script>	    
     <script src="<?= SITE_URL ?>/assets/js/script.js?sid=<?= md5(time()) ?>"></script>
   </body>
 </html>
