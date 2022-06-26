@@ -29,8 +29,8 @@
 
 	$restricted_pages[ 'user' ]['access'] = [ "user-page" ];
 	$restricted_pages[ 'user' ][ 'default_page' ] = "default";
-
+	*/
 	$restricted_pages[ 'default' ]['access'] = [ "login", "register" ];
-	$restricted_pages[ 'default' ][ 'default_page' ] = "login"; */
+	$restricted_pages[ 'default' ][ 'default_page' ] = "login"; 
 
 	has_access( true );
