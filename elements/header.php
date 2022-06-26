@@ -19,7 +19,7 @@
         <div class="col">
           <ul class="nav nav-pills p-2 bg-light">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="<?= SITE_URL ?>"><?= SITE_TITLE ?></a>
+              <a class="nav-link" aria-current="page" href="<?= SITE_URL ?>"><?= SITE_TITLE ?></a>
             </li>            
           </ul>
         </div>

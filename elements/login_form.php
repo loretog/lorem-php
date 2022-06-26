@@ -1,4 +1,4 @@
-<div class="col p-5">
+<div class="col-4 p-5">
 	<h3>Login</h3>
 	<form method="post">
 		<input type="hidden" name="action" value="validate_user">
