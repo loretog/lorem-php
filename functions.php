@@ -13,7 +13,7 @@ function set_message( $msg, $type = "success" ) {
 
 function show_message() {		
 	if( isset( $_SESSION[ 'MESSAGE' ] ) && !empty( $_SESSION[ 'MESSAGE' ] ) ) {
-		echo "<div class='alert alert-" . $_SESSION[ 'MESSAGE_TYPE' ] . "'>" . $_SESSION[ 'MESSAGE' ] . "</div>";	
+		echo "<div class='alert alert-" . $_SESSION[ 'MESSAGE_TYPE' ] . " m-2'>" . $_SESSION[ 'MESSAGE' ] . "</div>";	
 		unset( $_SESSION[ 'MESSAGE' ] );	
 		unset( $_SESSION[ 'MESSAGE_TYPE' ] );
 	}
@@ -24,26 +24,43 @@ function redirect( $page = "", $q = "" ) {
 	exit;
 }
 
+function get_page() {	
+	global $restricted_pages;
+	if( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ) {
+		$page = $_GET[ 'page' ];
+		if( file_exists( ROOT_DIR . DS . 'pages' . DS . $page . ".php" ) ) {
+			return $page;
+		} else {
+			return '404';
+		}
+	} else {	
+		if( isset( $_SESSION[ AUTH_TYPE ] ) && !empty( $_SESSION[ AUTH_TYPE ] ) ) {
+			return $restricted_pages[ $_SESSION[ AUTH_TYPE ] ][ 'default_page' ];
+		} else {
+			return $restricted_pages[ 'default' ][ 'default_page' ];
+		}		
+	}	 
+}
+
 function has_access( $redirect = false ) {
 	global $restricted_pages;	
-	$page = clean( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : 'default' );
-	if( isset( $_SESSION[ AUTH_ID ] ) ) { 		
-
+	$page = clean( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : 'default' );	
+	if( isset( $_SESSION[ AUTH_ID ] ) ) { 						
 		if( isset( $_REQUEST[ 'action' ] ) ) return;		 		
-		$type = clean( isset( $_SESSION[ AUTH_TYPE ] ) && !empty( $_SESSION[ AUTH_TYPE ] ) ? $_SESSION[ AUTH_TYPE ] : 'default' );
-
-		if( isset( $restricted_pages ) && !empty( $restricted_pages ) ) {		
-			if( isset( $restricted_pages[ $type ] ) && !empty( $restricted_pages[ $type ] ) ) {						
-				if( isset( $page ) && !empty( $page ) ) {	
-					if( array_search( $page, $restricted_pages[ $type ][ 'access' ] ) === false && ( $page != LOGIN_REDIRECT && $restricted_pages[ $type ][ 'default_page' ] != $page ) ) {				
+		$type = clean( isset( $_SESSION[ AUTH_TYPE ] ) && !empty( $_SESSION[ AUTH_TYPE ] ) ? $_SESSION[ AUTH_TYPE ] : 'default' );				
+		$page = clean( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : $restricted_pages[ $type ][ 'default_page' ] );			
+		if( isset( $restricted_pages ) && !empty( $restricted_pages ) ) {					
+			if( isset( $restricted_pages[ $type ] ) && !empty( $restricted_pages[ $type ] ) ) {										
+				if( isset( $page ) && !empty( $page ) ) {											
+					if( array_search( $page, $restricted_pages[ $type ][ 'access' ] ) === false && ( $page != LOGIN_REDIRECT && $restricted_pages[ $type ][ 'default_page' ] != $page ) ) {										
 						// no access, either redirect to a page or return false							
 						if( $redirect ) {					
-							set_message( "You have no access to page $page", "warning" );
+							set_message( "You have no access to page <span class='fw-bold'>$page</span>", "warning" );
 							redirect( $restricted_pages[ $type ][ 'default_page' ] );
 						}	else {							
 							return false;
 						}
-					} else {
+					} else {						
 						return true;				
 					}
 				}
@@ -55,17 +72,31 @@ function has_access( $redirect = false ) {
 				redirect();
 			}
 		}
-	} else {
-		if( isset( $restricted_pages ) ) {
-			foreach( $restricted_pages as $pages ) {
+	} else {			
+		if( isset( $restricted_pages ) && !isset( $_SESSION[ AUTH_ID ] )) {					
+			/* var_dump($restricted_pages)	; exit;
+			foreach( $restricted_pages as $pages ) {			
 				if( isset( $pages[ 'access' ] ) ) {
 					if( in_array( $page, $pages[ 'access' ] ) ) {
 						set_message( "You have no access to page $page", "warning" );
 						redirect( 'default_page' );
 					}
 				}
-			}
-		}
+			} */
+			//&& $page != LOGIN_REDIRECT 
+			if( array_search( $page, $restricted_pages[ 'default' ][ 'access' ] ) === false ) {
+				redirect(LOGIN_REDIRECT);
+			}			
+			
+		} 
+	}
+}
+
+function is_usertype( $check_type ) {
+	if( $_SESSION[ AUTH_TYPE ] == $check_type ) {
+		return true;
+	} else {
+		return false;
 	}
 }
 
