@@ -74,16 +74,6 @@ function has_access( $redirect = false ) {
 		}
 	} else {			
 		if( isset( $restricted_pages ) && !isset( $_SESSION[ AUTH_ID ] )) {					
-			/* var_dump($restricted_pages)	; exit;
-			foreach( $restricted_pages as $pages ) {			
-				if( isset( $pages[ 'access' ] ) ) {
-					if( in_array( $page, $pages[ 'access' ] ) ) {
-						set_message( "You have no access to page $page", "warning" );
-						redirect( 'default_page' );
-					}
-				}
-			} */
-			//&& $page != LOGIN_REDIRECT 
 			if( array_search( $page, $restricted_pages[ 'default' ][ 'access' ] ) === false ) {
 				redirect(LOGIN_REDIRECT);
 			}			
