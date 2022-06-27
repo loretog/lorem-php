@@ -104,7 +104,11 @@ function add_record( $name, $fields = [] ) {
 
 	if( ( isset( $name ) && isset( $fields ) ) && !empty( $name ) && !empty( $fields ) && is_array( $fields ) ) {
 		$cols = implode( " , ", array_keys( $fields ) );
-		$vals = "'" . implode( "' , '", array_values( $fields ) ) . "'";
+		$x = [];
+		foreach( array_values( $fields) as $a) {
+			$x[] = $DB->real_escape_string($a);
+		}
+		$vals = "'" . implode( "' , '", array_values( $x)) . "'";
 		$sql = "INSERT INTO $name ( $cols ) VALUES( $vals )";
 		//echo $sql; exit;
 		$DB->query( $sql );
@@ -124,7 +128,7 @@ function update_record( $name, $id, $fields = [] ) {
 		$f = [];
 
 		foreach ( $fields as $key => $value ) {
-			$f[] = "$key='$value'";
+			$f[] = "$key='" . $DB->real_escape_string($value) . "'";
 		}
 		$f = implode( ",", $f );	
 		$sql = "UPDATE $name SET $f WHERE {$id['key']}={$id['val']}";
