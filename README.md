@@ -3,9 +3,10 @@ lorem-framework - by Loreto Gabawa Jr.
 
 https://github.com/loretog/lorem-framework
 
-a tool for beginners
+a tool for beginners or students
 
-Adding a page:
+How-to:
 
-1. Create a file called test_page.php and save it in the pages folder.
-2. To view the page, use the URL localhost/mysite/?page=test_page
+1. Download files
+2. Extract in your root folder (e.g.: C:\xampp\htdocs\my-app)
+3. 
