@@ -1,7 +1,7 @@
-lorem-framework - by Loreto Gabawa Jr.
+lorem-php - by Loreto Gabawa Jr.
 ===============
 
-https://github.com/loretog/lorem-framework
+https://github.com/loretog/lorem-php
 
 a tool for beginners or students
 
