@@ -10,6 +10,6 @@ define( 'DBUSER', 'root' );
 define( 'DBPASS', '' );
 define( 'DBNAME', 'sample-db' ); */
 
-define( 'SITE_TITLE', 'Lorem Framework' );
+define( 'SITE_TITLE', 'Lorem PHP' );
 
 
