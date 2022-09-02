@@ -63,7 +63,7 @@ function has_access( $redirect = false ) {
 					if( array_search( $page, $restricted_pages[ $type ][ 'access' ] ) === false && ( $page != LOGIN_REDIRECT && $restricted_pages[ $type ][ 'default_page' ] != $page ) ) {										
 						// no access, either redirect to a page or return false							
 						if( $redirect ) {					
-							set_message( "You have no access to page <span class='fw-bold'>$page</span>", "warning" );
+							set_message( "You have no access to page <span class='fw-bold' style='text-decoration: underline;'>$page</span>", "warning" );
 							redirect( $restricted_pages[ $type ][ 'default_page' ] );
 						}	else {							
 							return false;
