@@ -6,6 +6,10 @@ function element( $el ) {
 	include ROOT_DIR . "/elements/$el.php";
 }
 
+function is_logged_in() {
+	return isset( $_SESSION[ AUTH_ID ] ) && !empty( $_SESSION[ AUTH_ID ] );
+}
+
 function has_message() {
 	return isset( $_SESSION[ 'MESSAGE' ] ) && !empty( $_SESSION[ 'MESSAGE' ] );
 }
