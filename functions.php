@@ -169,5 +169,40 @@ function log_errors( $message ) {
 	global $DB;
 	$DB->query( "INSERT INTO error_logs1 (message) VALUES('$message')" );
 }
+
+// 2022-11-03
+/* 
+	HOW TO: used for unserializing form data coming from ajax requests.
+	JS CODe:
+	$(document).on( 'click', '.save-address', function(e) {    
+    e.preventDefault();   
+
+    var formData = $(".new-address-container .shipping").serializeArray(); 
+
+    $.ajax({
+      url: SITE_URL + 'checkout.php',
+      data: {
+        request: 'new_shipping_address',
+        xData: JSON.stringify(formData),
+      },
+      type: "post",
+      success: function( response ) {
+        console.log(response);
+      }
+    });
+  } );   
+
+	$d = parseSerializedData( $_POST[ 'xData' ] );
+*/
+function parseSerializedData( $data ) {
+	$formData = json_decode(stripslashes( $data ), true);
+	$a = [];
+
+	foreach( $formData as $data) {  
+		$a[ $data[ 'name' ] ] = $data[ 'value' ];
+	}
+	return $a;
+}
+
 /* ADD YOUR CUSTOM FUNCTIONS IN custom_functions.php */
 require 'custom_functions.php';
