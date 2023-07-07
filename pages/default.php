@@ -2,16 +2,6 @@
 
 <?= element( 'header' ); ?>
 
-<div class="default-page pb-3 pt-3">
-    <div class="row">
-        <div class="col">
-            <div class="row">                
-                
-            </div>
-                                        
-        </div>
-        
-    </div>
-</div>
+<?= element( 'view' ); ?>
 
 <?= element( 'footer' ); ?>
