@@ -1,7 +1,10 @@
 <div class="col-4 p-5">
 	<h3>Login</h3>
+	<?= show_message();?>
 	<form method="post">
 		<input type="hidden" name="action" value="validate_user">
+		<?= csrf(); ?>
+
 		<div class="mb-3">
 			<label for="exampleInputEmail1" class="form-label">Email</label>
 			<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">			
