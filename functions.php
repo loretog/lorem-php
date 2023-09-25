@@ -24,67 +24,87 @@ function show_message() {
 }
 
 function redirect( $page = "", $q = "" ) {
-	header( "Location: " . SITE_URL . "/?page=$page" . ( !empty( $q ) ? '&' . $q : '' ) );
+	header( "Location: " . SITE_URL . "/$page" . ( !empty( $q ) ? '&' . $q : '' ) );
 	exit;
 }
 
-function get_page() {	
-	global $restricted_pages;
-	if( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ) {
-		$page = $_GET[ 'page' ];
-		if( file_exists( ROOT_DIR . DS . 'pages' . DS . $page . ".php" ) ) {
-			return $page;
-		} else {
-			return '404';
-		}
-	} else {	
-		if( isset( $_SESSION[ AUTH_TYPE ] ) && !empty( $_SESSION[ AUTH_TYPE ] ) ) {
-			return $restricted_pages[ $_SESSION[ AUTH_TYPE ] ][ 'default_page' ];
-		} else {
-			return $restricted_pages[ 'default' ][ 'default_page' ];
-		}		
-	}	 
+// Start of Subfoldering inside the pages Changes
+function get_page() {
+    global $restricted_pages;
+
+    $request_uri = $_SERVER['REQUEST_URI'];
+    $base_dir = str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname($_SERVER['SCRIPT_NAME']));
+
+    if ($base_dir !== '/') {
+        $base_dir = rtrim($base_dir, '/');
+    }
+
+    $request_uri = str_replace($base_dir, '', $request_uri);
+    $request_uri = strtok($request_uri, '?');
+    $request_uri = rtrim($request_uri, '/');
+    $page = trim($request_uri, '/');
+
+    if (empty($page)) {
+        if (isset($_SESSION[AUTH_TYPE]) && !empty($_SESSION[AUTH_TYPE])) {
+            return $restricted_pages[$_SESSION[AUTH_TYPE]]['default_page'];
+        } else {
+            return $restricted_pages['default']['default_page'];
+        }
+    }
+
+    if (file_exists(ROOT_DIR . '/pages/' . $page . '.php')) {
+        return $page;
+    }
+
+    $segments = explode('/', $page);
+    $subfolder = '';
+    $filename = '';
+
+    if (count($segments) > 1) {
+        $subfolder = $segments[0];
+        $filename = $segments[1];
+    }
+
+    if (!empty($subfolder) && !empty($filename) && file_exists(ROOT_DIR . '/pages/' . $subfolder . '/' . $filename . '.php')) {
+        return $subfolder . '/' . $filename;
+    }
+
+    header("Location: ../error/404");
+    //exit;
 }
 
-function has_access( $redirect = false ) {
-	global $restricted_pages;	
-	$page = clean( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : 'default' );	
-	if( isset( $_SESSION[ AUTH_ID ] ) ) { 						
-		if( isset( $_REQUEST[ 'action' ] ) ) return;		 		
-		$type = clean( isset( $_SESSION[ AUTH_TYPE ] ) && !empty( $_SESSION[ AUTH_TYPE ] ) ? $_SESSION[ AUTH_TYPE ] : 'default' );				
-		$page = clean( isset( $_GET[ 'page' ] ) && !empty( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : $restricted_pages[ $type ][ 'default_page' ] );			
-		if( isset( $restricted_pages ) && !empty( $restricted_pages ) ) {					
-			if( isset( $restricted_pages[ $type ] ) && !empty( $restricted_pages[ $type ] ) ) {										
-				if( isset( $page ) && !empty( $page ) ) {											
-					if( array_search( $page, $restricted_pages[ $type ][ 'access' ] ) === false && ( $page != LOGIN_REDIRECT && $restricted_pages[ $type ][ 'default_page' ] != $page ) ) {										
-						// no access, either redirect to a page or return false							
-						if( $redirect ) {					
-							set_message( "You have no access to page <span class='fw-bold'>$page</span>", "warning" );
-							redirect( $restricted_pages[ $type ][ 'default_page' ] );
-						}	else {							
-							return false;
-						}
-					} else {						
-						return true;				
-					}
-				}
-			} else {
-				set_message( "User type is not found.", "warning" );
-				unset( $_SESSION[ AUTH_ID ] );
-				unset( $_SESSION[ AUTH_NAME ] );
-				unset( $_SESSION[ AUTH_TYPE ] );
-				redirect();
-			}
-		}
-	} else {			
-		if( isset( $restricted_pages ) && !isset( $_SESSION[ AUTH_ID ] )) {					
-			if( array_search( $page, $restricted_pages[ 'default' ][ 'access' ] ) === false ) {
-				redirect(LOGIN_REDIRECT);
-			}			
-			
-		} 
-	}
+function has_access($redirect = false) {
+    global $restricted_pages;
+    $page = get_page();
+
+    if (isset($_SESSION[AUTH_ID])) {
+        if (isset($_REQUEST['action'])) {
+            return;
+        }
+
+        $type = isset($_SESSION[AUTH_TYPE]) && !empty($_SESSION[AUTH_TYPE]) ? $_SESSION[AUTH_TYPE] : 'default';
+
+        if (array_search($page, $restricted_pages[$type]['access']) === false && ($page != LOGIN_REDIRECT && $restricted_pages[$type]['default_page'] != $page)) {
+
+            if ($redirect) {
+                set_message("You have no access to page <span class='fw-bold'>$page</span>", "warning");
+                redirect($restricted_pages[$type]['default_page']);
+            } else {
+                return false;
+            }
+        }
+
+        return true;
+        
+    } else {
+        if (isset($restricted_pages) && !isset($_SESSION[AUTH_ID])) {
+            if (array_search($page, $restricted_pages['default']['access']) === false) {
+                redirect(LOGIN_REDIRECT);
+            }
+        }
+    }
 }
+// End of Subfoldering inside the pages Changes
 
 function is_usertype( $check_type ) {
 	if( $_SESSION[ AUTH_TYPE ] == $check_type ) {
@@ -206,3 +226,4 @@ function parseSerializedData( $data ) {
 
 /* ADD YOUR CUSTOM FUNCTIONS IN custom_functions.php */
 require 'custom_functions.php';
+require 'route.php';
