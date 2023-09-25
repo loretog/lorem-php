@@ -1,0 +1,22 @@
+{
+    "name": "loremPHP/loremPHP",
+    "description": "Lorem PHP Framework. A tool for a beginner or student. This is an Updated PHP Framework",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "<=8.1.6",
+        "mpdf/mpdf": "^8.1",
+        "filp/whoops": "^2.12"
+    },
+    "authors": [
+        {
+            "name": "Loreto G. Gabawa Jr."
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "LoremPHP\\LoremPHP\\": "src/"
+        }
+    }
+}
