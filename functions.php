@@ -30,7 +30,7 @@ function redirect( $page = "", $q = "" ) {
 
 // Start of Subfoldering inside the pages Changes
 function get_page() {
-    global $restricted_pages;
+    global $restricted_pages;	
 
     $request_uri = $_SERVER['REQUEST_URI'];
     $base_dir = str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname($_SERVER['SCRIPT_NAME']));
